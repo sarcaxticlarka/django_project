@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Chai aur post
+{% endblock  %}
+
+{% block content %}
+
+<h1 class="text-center    ">Chai aur post</h1>
+<h2>
+    {% if form.instance.pk %} 
+    Edit tweet 
+    {% else %} 
+    Create a new post
+     {% endif %} 
+     <form method="post" enctype="multipart/form-data" class='form'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-warning" type="submit">new post</button>
+     </form>
+     <a href="{% url 'post_list' %}">Back to all post</a>
+</h2>
+
+{% endblock content %}

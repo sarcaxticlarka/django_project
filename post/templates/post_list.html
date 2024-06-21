@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Chai aur post
+{% endblock  %}
+
+{% block content %}
+
+<h1 class="text-center">Chai aur post</h1>
+
+<a class="btn btn-primary mb-4" href="{% url 'post_create' %}">Create a new post</a>
+<div class="container row gap-3">
+    {% for post in posts %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ post.photo.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.user.username }}</h5>
+            <p class="card-text">{{ post.text }}</p>
+            {% if post.user == user %}
+            <a href="{% url 'post_edit' post.id %}" class="btn btn-primary">Edit</a>
+            <a class="btn btn-danger" href="{% url 'post_delete' post.id %}">Delete</a>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
